@@ -5,17 +5,17 @@ from os import environ as env
 from logging import getLogger
 logger = getLogger(__name__)
 
-class SkeletonAlertUserSettingsForm(forms.Form):
+class SesAlertUserSettingsForm(forms.Form):
     favorite_bone = forms.CharField(max_length=100)
 
-class SkeletonAlertPlugin(AlertPlugin):
-    name = "Skeleton"
-    slug = "cabot_alert_skeleton"
-    author = "Jonathan Balls"
+class SesletonAlertPlugin(AlertPlugin):
+    name = "ses"
+    slug = "cabot_alert_ses"
+    author = "Oleksandr Nagorodniuk"
     version = "0.0.1"
     font_icon = "fa fa-code"
 
-    user_config_form = SkeletonAlertUserSettingsForm
+    user_config_form = SesAlertUserSettingsForm
 
     def send_alert(self, service, users, duty_officers):
         calcium_level = env.get('CALCIUM_LEVEL') 
@@ -23,7 +23,7 @@ class SkeletonAlertPlugin(AlertPlugin):
         for u in users:
             logger.info('{} - This is bad for your {}.'.format(
                 message,
-                u.cabot_alert_skeleton_settings.favorite_bone))
+                u.cabot_alert_ses_settings.favorite_bone))
 
         return True
 
