@@ -23,8 +23,8 @@ sb_crit = env['STASHBOARD_CRITICAL']
 
 sb1_template = """Service {{ service.name }} {% if service.overall_status == service.PASSING_STATUS %}is back to normal{% else %} reporting {{ service.overall_status }} status{% endif %} {% if service.overall_status != service.PASSING_STATUS %}Checks failing: {% for check in service.all_failing_checks %}{% if check.check_category == 'Jenkins check' %}{% if check.last_result.error %}{{ check.name }} ({{ check.last_result.error|safe }}) {{jenkins_api}}job/{{ check.name }}/{{ check.last_result.job_number }}/console{% else %}{{ check.name }} {{jenkins_api}}/job/{{ check.name }}/{{check.last_result.job_number}}/console{% endif %}{% else %}{{ check.name }}{% if check.last_result.error %}({{ check.last_result.error|safe }}){% endif %}{% endif %}{% endfor %}{% endif %}{% if alert %}{% for alias in users %}@{{ alias }}{% endfor %}{% endif %}"""
 
-class StashboardAlert(AlertPlugin):
-    name = "Stashboard"
+class SnsAlert(AlertPlugin):
+    name = "sns"
     author = "Oleksandr Nagorodniuk"
 
     def send_alert(self, service, users, duty_officers):
@@ -61,9 +61,9 @@ class StashboardAlert(AlertPlugin):
             'jenkins_api': settings.JENKINS_API,
             })
         message = Template(sb1_template).render(c)
-        self._send_stashboard_alert(message, key=str(service.id), priority=priority, service=service)
+        self._send_sns_alert(message, key=str(service.id), priority=priority, service=service)
 
-    def _send_stashboard_alert(self, message, key, priority, service):
+    def _send_sns_alert(self, message, key, priority, service):
         # set up a session so we can do multiple requests easily
         s = requests.Session()
         s.auth = OAuth1(u'anonymous', u'anonymous',
