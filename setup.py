@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='cabot-alert-sns',
-      version='1.0.1',
+      version='0.2',
       description='An empty alert plugin for Cabot by Arachnys',
       author='Arachnys',
       author_email='info@arachnys.org',
