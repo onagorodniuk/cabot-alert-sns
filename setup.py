@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
-setup(name='cabot-alert-ses',
-      version='1.0.0',
-      description='SES plugin for cabot',
-      author='onagorodniuk',
-      author_email='info@arachnys.com',
-      url='http://cabotapp.com',
-      packages=find_packages(),
-      download_url = 'https://github.com/onagorodniuk/cabot-alert-ses/tarball/1.0.0',
+setup(name='cabot-alert-stashboard',
+      version='0.1',
+      description='A Cabot plugin for sending alerts with Stashboard',
+      author='Daniel Nelson',
+      author_email='daniel@dcn.io',
+      license='MIT',
+      url='https://github.com/packetcollision/cabot-alert-stashboard/',
+      packages=[
+        'cabot_alert_stashboard'
+        ],
+      keywords='cabot alert',
+      download_url= 'https://github.com/packetcollision/cabot-alert-stashboard/tarball/0.1'
      )
