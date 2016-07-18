@@ -10,5 +10,5 @@ class SnsAlert(AlertPlugin):
         return
 
 class SesAlertUserData(AlertPluginUserData):
-    name = "Ses Plugin"
+    name = "Sns Plugin"
     favorite_bone = models.CharField(max_length=50, blank=True)
