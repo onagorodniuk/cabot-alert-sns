@@ -9,8 +9,8 @@ import requests
 import json
 
 
-class TestAlert(AlertPlugin):
-    name = "Test"
+class SnsAlert(AlertPlugin):
+    name = "Sns"
     author = "Oleksandr Nagorodniuk"
 
     def send_alert(self, service, users, duty_officers):
@@ -23,6 +23,6 @@ class TestAlert(AlertPlugin):
 
                 message = Template(post_template).render(c)
 
-class TestAlertUserData(AlertPluginUserData):
-    name = "Test Plugin"
+class SnsAlertUserData(AlertPluginUserData):
+    name = "Sns Plugin"
     favorite_bone = models.CharField(max_length=50, blank=True)
