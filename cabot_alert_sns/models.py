@@ -1,14 +1,28 @@
-from django.db import models
 from cabot.cabotapp.alert import AlertPlugin, AlertPluginUserData
 
-class SnsAlert(AlertPlugin):
-    name = "Sns"
+from django.db import models
+from django.conf import settings
+from django.template import Context, Template
+from os import environ as env
+
+import requests
+import json
+
+
+class TestAlert(AlertPlugin):
+    name = "Test"
     author = "Oleksandr Nagorodniuk"
 
     def send_alert(self, service, users, duty_officers):
-        """Implement your send_alert functionality here."""
-        return
 
-class SesAlertUserData(AlertPluginUserData):
-    name = "Sns Plugin"
+                c = Context({
+                        'service': service,
+                        'host': settings.WWW_HTTP_HOST,
+                        'scheme': settings.WWW_SCHEME,
+                        })
+
+                message = Template(post_template).render(c)
+
+class TestAlertUserData(AlertPluginUserData):
+    name = "Test Plugin"
     favorite_bone = models.CharField(max_length=50, blank=True)
