@@ -22,12 +22,12 @@ class SnsAlert(AlertPlugin):
     author = "Oleksandr Nagorodniuk"
 
     def send_alert(self, service, users, duty_officers):
-        if not self._service_alertable(service):
-            return
-        sns_aliases= []
-        users = list(users) + list(duty_officers)
+        #if not self._service_alertable(service):
+        #    return
+        #sns_aliases= []
+        #users = list(users) + list(duty_officers)
 
-        sns_aliases = [u.sns_arn for u in SnsAlertUserData.objects.filter(user__user__in=users)]
+        #sns_aliases = [u.sns_arn for u in SnsAlertUserData.objects.filter(user__user__in=users)]
 
 
 
